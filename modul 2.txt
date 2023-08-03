@@ -1,0 +1,17 @@
+int pin = 10;
+int led;
+int hasil;
+void setup() {
+  Serial.begin(9600);
+  pinMode(pin,OUTPUT);
+}
+
+void loop() {
+ hasil = analogRead(A2);
+ Serial.println(hasil);
+ led = map(hasil, 0, 1023, 0, 255);
+ Serial.print(" / ");
+ Serial.print(led);
+ analogWrite(pin,led);
+ delay(1000);
+}

@@ -1,0 +1,24 @@
+#include <Servo.h>
+
+Servo myservo;
+int pos = 0;
+
+void setup() {
+  //Memasang servo pada pin 9
+  myservo.attach(9);
+}
+
+void loop() {
+  //Servo berputar dari posisi 0 derajat ke 180 derajat
+  for (pos = 0; pos <= 180; pos += 1) {
+    myservo.write(pos); 
+    //Jeda selama 15 milidetik
+    delay(5);
+  }
+  //Servo berputar dari posisi 180 derajat ke 0 derajat
+  for (pos = 180; pos >= 0; pos -= 1) {
+    myservo.write(pos);
+    //Jeda selama 15 milidetik
+    delay(5);
+  }
+}

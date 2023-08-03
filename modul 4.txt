@@ -1,0 +1,31 @@
+#include <Ultrasonic.h>
+#include <LiquidCrystal_I2C.h>
+Ultrasonic sensor(9, 8);  //(triger, echo)
+LiquidCrystal_I2C layar(0x27, 16, 2);
+
+int jarak;
+void setup() {
+  Serial.begin(9600);
+  layar.init();
+  layar.backlight();
+}
+
+void loop() {
+  jarak = sensor.read();
+  layar.print("jaraknya = ");
+  layar.setCursor(0, 5);
+  layar.print(jarak);
+  if (jarak < 30) {
+    layar.setCursor(0, 0);
+    layar.print(jarak);
+    layar.setCursor(0, 4);
+    layar.print("terlalu dekat ");
+  } else {
+    layar.setCursor(0, 0);
+    layar.print(jarak);
+    layar.setCursor(0, 4);
+    layar.print("aman");
+  }
+  delay(1000);
+  layar.clear();
+}
